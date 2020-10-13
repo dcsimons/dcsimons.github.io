@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="google-site-verification" content="oaubed02kUhAV0ZC92SUquLKvVuYTfts2jbMQdXip0Y" />
         <link rel="shortcut icon" type="image/png" href="images/favicon.png">
-        <title>MPB Product Pricing</title>
+        <title>Myopolis</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto|Montserrat:300,400,500,600,700|Open+Sans:400,300,600" rel="stylesheet">
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -32,6 +32,10 @@
 
         <!-- MAIN CONTENT -->
         <main>
+            <section class="header">
+                <img class="footer-graphic" src="images/mpb_graphic_red.png" />
+                <span class="header-title">Product Pricing</span>
+            </section>
             <section class="searchbar">
                 <div class="qty-container">
                     <span class="qty-title">Qty: </span>
@@ -56,27 +60,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td></td>
-                            <td class="remove"><i class="fas fa-times"></i></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td></td>
-                            <td class="remove"><i class="fas fa-times"></i></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td></td>
-                            <td class="remove"><i class="fas fa-times"></i></td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </section>
@@ -96,9 +80,9 @@
             var productNames = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
-                prefetch: 'https://github.com/dcsimons/mpb_products/blob/main/data/products.json',
+                prefetch: 'https://dcsimons.github.io/mpb_products/data/products.json',
                 remote: {
-                    url: 'https://github.com/dcsimons/mpb_products/blob/main/data/%QUERY.json',
+                    url: 'https://dcsimons.github.io/mpb_products/data/%QUERY.json',
                     wildcard: '%QUERY'
                 }
             });
@@ -131,8 +115,8 @@
                 var productRow = '<tr>';
                 productRow += '<td>' + $_qty + '</td>';
                 productRow += '<td>' + suggestion.name + '</td>';
-                productRow += '<td>' + suggestion.price + '</td>';
-                productRow += '<td>' + amount + '</td>';
+                productRow += '<td>$' + suggestion.price + '</td>';
+                productRow += '<td>$' + amount + '</td>';
                 productRow += '<td class="remove"><i class="fas fa-times"></i></td>';
                 productRow += '</tr>';
 
@@ -140,7 +124,7 @@
             });
 
             // remove a row from the table
-            $('.remove i').click(function() {
+            $(document).on('click', '.remove i', function() {
                 $(this).closest('tr').remove();
             });
         });
